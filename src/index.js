@@ -1,17 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import React, { Component, useReducer, useState } from "react";
+import { useReducer, useState } from "./kreact/react";
+import ReactDOM from "./kreact/react-dom";
+// import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+function Test(props) {
+  const [count, setCount] = useReducer((x) => x + 1, 0);
+  const [state, setState] = useState(0);
+  return (
+    <p>
+      <button
+        onClick={() => {
+          setState(state + 1);
+        }}
+      >
+        useState:{state}
+      </button>
+      <button onClick={setCount}>useReducer:{count}</button>
+    </p>
+  );
+}
+
+const jsx = (
+  <div>
+    <h2>内容</h2>
+    <h3>
+      ssss<p>swdf</p>
+    </h3>
+    <a href="https://github.com">github</a>
+    <Test name="function" />
+  </div>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(jsx, document.querySelector("#root"));
